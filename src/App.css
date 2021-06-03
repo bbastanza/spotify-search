@@ -7,29 +7,62 @@
   align-items: center;
   font-family: "Jetbrains Mono";
 }
+.album-name {
+  margin: 0;
+}
 
 .search-btn {
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #00d955;
-  padding: 5px;
+  padding: 10px 40px;
   color: #313131;
   font-family: "Jetbrains Mono";
   text-align: center;
   box-shadow: 1px 1px 1px #777;
   border: none;
-  margin: 5px;
+  margin: 20px;
   font-weight: bold;
+  transition: background-color 200ms;
+  font-size: 20px;
+}
+.add-btn {
+  border-radius: 3px;
+  background-color: #00d955;
+  padding: 10px 20px;
+  color: #313131;
+  font-family: "Jetbrains Mono";
+  text-align: center;
+  box-shadow: 1px 1px 1px #777;
+  border: none;
+  /* margin: 20px; */
+  font-weight: bold;
+  transition: background-color 200ms;
+  font-size: 1rem;
 }
 
-input {
+.add-btn:hover {
+  background-color: #1eff9a;
+}
+
+.search-btn:hover {
+  background-color: #1eff9a;
+}
+
+.input-box {
   border-radius: 5px;
   text-align: center;
   box-shadow: 1px 1px 1px #777;
   border: none;
+  font-size: 20px;
+  margin: 5px;
 }
 
 ::-webkit-input-placeholder {
   text-align: center;
+}
+
+h1.title {
+  font-size: 30px;
 }
 
 .spotify-logo {
