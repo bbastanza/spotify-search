@@ -6,8 +6,19 @@ import axios from "axios";
 function App() {
     const [textboxValue, setTextboxValue] = useState("");
 
-    const handleSubmit = () => {
-        console.log(textboxValue);
+    const handleSubmit = async () => {
+        try {
+            const res = await axios.get(`http://localhost:5000/spotify/search/${textboxValue}`);
+            if (res.status !== 200) {
+                const data = res.data;
+                throw new Error("spotify call failed");
+            }
+            console.log(res.data);
+
+            return res.data;
+        } catch (error) {
+            throw error;
+        }
     };
 
     return (
