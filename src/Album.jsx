@@ -9,6 +9,7 @@ const Album = ({ album, addProduct }) => {
             id: album.id,
         });
     };
+    console.log(album);
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -23,10 +24,20 @@ const Album = ({ album, addProduct }) => {
                 boxShadow: "1px 1px 8px #404040",
                 borderRadius: 5,
                 padding: 20,
+                margin: 10,
             }}>
             {!!album && (
-                <>
-                    <h2 className="album-name">{album?.name}</h2>
+                <div style={{ width: "60%", margin: "auto" }}>
+                    <div style={{ display: "flex", justifyContent: "left", paddingLeft: 50 }}>
+                        <div style={{ width: 300, padding: 20, textAlign: "left" }}>
+                            <h2 className="album-name">Artist:</h2>
+                            <h2 className="album-name">Album:</h2>
+                        </div>
+                        <div style={{ padding: 20, textAlign: "left", width: 300 }}>
+                            <h2 className="album-name">{album?.artistName}</h2>
+                            <h2 className="album-name">{album?.albumName}</h2>
+                        </div>
+                    </div>
                     <input
                         className="input-box"
                         name="genre"
@@ -47,7 +58,7 @@ const Album = ({ album, addProduct }) => {
                     <button className="add-btn" onClick={addItem}>
                         Add Album
                     </button>
-                </>
+                </div>
             )}
         </div>
     );

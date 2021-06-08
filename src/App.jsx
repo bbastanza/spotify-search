@@ -6,21 +6,20 @@ import Album from "./Album";
 
 function App() {
     const [textboxValue, setTextboxValue] = useState("");
-    const [albums, setAlbums] = useState([{ name: "hardcore", id: "1908hr32180hhr" }]);
+    const [albums, setAlbums] = useState([]);
 
     const handleSubmit = async () => {
         try {
             console.log(textboxValue);
 
-            const res = await axios.get(`https://localhost:5001/spotify/search/${textboxValue}`);
+            const res = await axios.get(`http://localhost:5000/spotify/${textboxValue}`);
             if (res.status !== 200) {
-                const data = res.data;
-                console.log(data);
-                // throw new Error("spotify call failed");
+                console.log(res.data);
             }
-            console.log(res.data);
+            const data = res.data;
+            console.log(data);
 
-            // return res.data;
+            setAlbums(data);
         } catch (error) {
             throw error;
         }
@@ -58,13 +57,17 @@ function App() {
                 placeholder="album search"
                 value={textboxValue}
                 onChange={e => setTextboxValue(e.target.value)}
+                onKeyPress={e => {
+                    if (e.code === "Enter") handleSubmit();
+                }}
             />
             <button className="search-btn" onClick={handleSubmit}>
                 Search
             </button>
-            {albums.map(album => {
-                return <Album addProduct={addProduct} album={album} key={album.name} />;
-            })}
+            {albums.length > 0 &&
+                albums.map(album => {
+                    return <Album addProduct={addProduct} album={album} key={album.id} />;
+                })}
         </div>
     );
 }
