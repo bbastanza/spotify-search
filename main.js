@@ -31,6 +31,10 @@ app.on("window-all-closed", function () {
     const express = require("express");
     const app = express();
     const searchSpotify = require("./helpers/searchSpotify");
+    const addProductService = require("./helpers/addProductService");
+
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
 
     app.use(function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
@@ -44,6 +48,11 @@ app.on("window-all-closed", function () {
         const responseData = await searchSpotify(query);
 
         res.send(responseData);
+    });
+
+    app.post("/db", async (req, res) => {
+        addProductService(req.body);
+        res.status(200).json({ msg: "nailed it" });
     });
 
     const PORT = process.env.PORT || 5000;

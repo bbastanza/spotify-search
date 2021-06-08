@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const Album = ({ album, addProduct }) => {
     const [state, setState] = useState({ genre: "", price: 20 });
+
     const addItem = () => {
         addProduct({
             genre: state.genre,
@@ -9,7 +10,6 @@ const Album = ({ album, addProduct }) => {
             id: album.id,
         });
     };
-    console.log(album);
 
     const handleChange = e => {
         const { name, value } = e.target;

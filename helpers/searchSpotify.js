@@ -22,7 +22,7 @@ const searchSpotify = async query => {
     try {
         const response = await axios.get(`https://api.spotify.com/v1/search?q=${query}&type=album`, config);
         const data = response.data;
-        const albums = data?.albums.items.map(item => {
+        const albums = data.albums?.items.map(item => {
             return new AlbumData(item.artists[0].name, item.name, item.id);
         });
         return albums;

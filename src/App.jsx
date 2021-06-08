@@ -10,14 +10,11 @@ function App() {
 
     const handleSubmit = async () => {
         try {
-            console.log(textboxValue);
-
             const res = await axios.get(`http://localhost:5000/spotify/${textboxValue}`);
             if (res.status !== 200) {
                 console.log(res.data);
             }
             const data = res.data;
-            console.log(data);
 
             setAlbums(data);
         } catch (error) {
@@ -26,24 +23,12 @@ function App() {
     };
 
     const addProduct = async albumData => {
-        console.log(albumData);
-
-        // try {
-        //     const res = await axios.post(`http://localhost:5000/admin/add`, {
-        //         spotifyId: albumData.spotifyId,
-        //         genre: albumData.genre,
-        //         price: albumData.price,
-        //     });
-        //     if (res.status !== 200) {
-        //         const data = res.data;
-        //         throw new Error("spotify call failed");
-        //     }
-        //     console.log(res.data);
-
-        //     return res.data;
-        // } catch (error) {
-        //     throw error;
-        // }
+        try {
+            const res = await axios.post(`http://localhost:5000/db`, albumData);
+            console.log(res);
+        } catch (err) {
+            console.log("nope");
+        }
     };
 
     return (

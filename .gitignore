@@ -6,6 +6,8 @@
 .pnp.js
 
 *.pem
+.log
+.log/*
 # testing
 /coverage
 
